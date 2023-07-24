@@ -1,13 +1,6 @@
 import ContinueButton from "../Buttons/ContinueButton";
 
-export default function PledgeInput({
-  amount,
-  setPledgeAmount,
-  hasPledged,
-  errorText,
-  setErrorText,
-  handleContinue,
-}) {
+export default function PledgeInput({ amount, setPledgeAmount, errorText, setErrorText, handleContinue }) {
   return (
     <div className="flex flex-col justify-center border-t-2 border-gray-300 pb-2 pt-5 text-center md:flex-row md:items-center md:justify-between md:px-5 md:pb-1 md:pt-2">
       <p>Enter your pledge</p>
