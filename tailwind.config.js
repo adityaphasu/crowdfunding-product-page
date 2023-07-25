@@ -13,8 +13,8 @@ export default {
         blackish: ["hsla(270,5%,7%,0.7)"],
       },
       backgroundImage: {
-        "hero-mobile": 'url("./static/image-hero-mobile.jpg")',
-        "hero-desktop": 'url("./static/image-hero-desktop.jpg")',
+        "hero-mobile": 'url("/src/assets/image-hero-mobile.jpg")',
+        "hero-desktop": 'url("/src/assets/image-hero-desktop.jpg")',
       },
     },
   },
