@@ -2,6 +2,8 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import Ham from "../assets/icons/icon-hamburger.svg";
 import Close from "../assets/icons/icon-close-menu.svg";
+import AnimatedComponent from "./AnimatedComponents/AnimatedComponent";
+import { fadeinY } from "../utils/animatedVariants";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +16,11 @@ export default function Header() {
 
   return (
     <header className="h-[19rem] bg-hero-mobile bg-cover bg-no-repeat lg:h-[25rem] lg:bg-hero-desktop lg:bg-contain">
-      <nav className="relative flex justify-between bg-gradient-to-b from-blackish-0 to-transparent px-6 py-8 md:px-20 lg:items-center lg:py-11 lg:pl-[10.3rem] lg:pr-[9.5rem]">
+      <AnimatedComponent
+        tag="nav"
+        animateInView={true}
+        variants={fadeinY(0)}
+        className="relative flex justify-between bg-gradient-to-b from-blackish-0 to-transparent px-6 py-8 md:px-20 lg:items-center lg:py-11 lg:pl-[10.3rem] lg:pr-[9.5rem]">
         <a href="#" aria-label="crowdfund" className="z-10">
           <img src={Logo} alt="crowdfund" width="128" height="20" />
         </a>
@@ -41,7 +47,7 @@ export default function Header() {
             </li>
           ))}
         </ul>
-      </nav>
+      </AnimatedComponent>
     </header>
   );
 }

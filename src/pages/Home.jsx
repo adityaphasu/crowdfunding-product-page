@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import About from "../components/About";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -13,7 +14,7 @@ export default function Home() {
 
   // Modal States
   const [pledgeModal, setPledgeModal] = useState(false);
-  const [successModal, setSuccessModal] = useState(false);
+  const [thankYouModal, setThankYouModal] = useState(false);
 
   // Function for toggling the modals
   const toggleModal = (modal) => {
@@ -21,29 +22,36 @@ export default function Home() {
       setPledgeModal(!pledgeModal);
       window.scrollTo({ top: 75, behavior: "smooth" });
     } else if (modal === "success") {
-      setSuccessModal(!successModal);
-      window.scrollTo({ top: 350, behavior: "smooth" });
+      setThankYouModal(!thankYouModal);
+      window.scrollTo({ top: 300, behavior: "smooth" });
     }
   };
 
   return (
     <>
-      {(pledgeModal || successModal) && (
+      {/* Overlay when modal opens*/}
+      {(pledgeModal || thankYouModal) && (
         <div className="fixed left-0 top-0 z-20 h-full w-full bg-black opacity-50"></div>
       )}
       <Header />
       <main className="relative m-auto -my-[3.75rem] px-6 pb-9 text-center md:max-w-2xl lg:-my-44 lg:max-w-[48.5rem] lg:pb-24 xl:-my-[5.65rem]">
         <Hero toggleModal={() => toggleModal("pledge")} />
         <Progress backers={backers} money={money} />
-        {pledgeModal && (
-          <PledgeModal
-            closeModal={() => setPledgeModal(false)}
-            toggleSuccessModal={() => toggleModal("success")}
-            setBackers={setBackers}
-            setMoney={setMoney}
-          />
-        )}
-        {successModal && <ThankYouModal closeModal={() => setSuccessModal(false)} />}
+        {/* Pledge Modal */}
+        <AnimatePresence>
+          {pledgeModal && (
+            <PledgeModal
+              closeModal={() => setPledgeModal(false)}
+              toggleThankYouModal={() => toggleModal("success")}
+              setBackers={setBackers}
+              setMoney={setMoney}
+            />
+          )}
+        </AnimatePresence>
+        {/* Thankyou Modal */}
+        <AnimatePresence mode="wait">
+          {thankYouModal && <ThankYouModal closeModal={() => setThankYouModal(false)} />}
+        </AnimatePresence>
         <About toggleModal={() => toggleModal("pledge")} />
       </main>
     </>

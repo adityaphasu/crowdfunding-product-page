@@ -1,8 +1,14 @@
+import { inputVariants } from "../../utils/animatedVariants";
+import AnimatedComponent from "../AnimatedComponents/AnimatedComponent";
 import ContinueButton from "../Buttons/ContinueButton";
 
 export default function PledgeInput({ amount, setPledgeAmount, errorText, setErrorText, handleContinue }) {
   return (
-    <div className="flex flex-col justify-center border-t-2 border-gray-300 pb-2 pt-5 text-center md:flex-row md:items-center md:justify-between md:px-5 md:pb-1 md:pt-2">
+    <AnimatedComponent
+      tag="div"
+      variants={inputVariants}
+      layoutId="input"
+      className="flex flex-col justify-center border-t-2 border-gray-300 pb-2 pt-5 text-center md:flex-row md:items-center md:justify-between md:px-5 md:pb-1 md:pt-2">
       <p>Enter your pledge</p>
       <div className="relative">
         <div className="relative flex items-center justify-center gap-5 py-4">
@@ -27,6 +33,6 @@ export default function PledgeInput({ amount, setPledgeAmount, errorText, setErr
         </div>
         {errorText && <p className="absolute bottom-0 left-2 text-xs text-red-600 md:left-2">{errorText}</p>}
       </div>
-    </div>
+    </AnimatedComponent>
   );
 }

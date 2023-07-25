@@ -1,6 +1,12 @@
+import AnimatedComponent from "./AnimatedComponents/AnimatedComponent";
+import { fadeIn, progressBarVariants } from "../utils/animatedVariants";
+
 export default function Progress({ backers, money }) {
   return (
-    <section className="section my-7 px-6 pb-9 md:px-11 md:pb-11 md:pt-6">
+    <AnimatedComponent
+      variants={fadeIn}
+      animateInView={true}
+      className="section my-7 px-6 pb-9 md:px-11 md:pb-11 md:pt-6">
       <h2 className="sr-only">Progress</h2>
       <div className=" flex flex-col  pb-[1.6rem] pt-7 md:flex-row md:gap-11">
         <div className="wrapper">
@@ -27,8 +33,12 @@ export default function Progress({ backers, money }) {
         </p>
       </div>
       <div className="my-1 h-3 rounded-full bg-slate-100 lg:mt-2">
-        <div className="h-3 w-[78%] rounded-full bg-moderate-cyan"></div>
+        <AnimatedComponent
+          tag="div"
+          animateInView={true}
+          variants={progressBarVariants}
+          className="h-3 rounded-full bg-moderate-cyan"></AnimatedComponent>
       </div>
-    </section>
+    </AnimatedComponent>
   );
 }

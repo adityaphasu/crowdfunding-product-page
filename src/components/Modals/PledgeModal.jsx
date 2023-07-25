@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { AnimatePresence, LayoutGroup } from "framer-motion";
+import { modalVariants } from "../../utils/animatedVariants";
 import Close from "../../assets/icons/icon-close-modal.svg";
+// json import
 import pledgesData from "../../data/pledges.json";
+// Input imports
 import PledgeInput from "../Inputs/PledgeInput";
 import CustomRadioInput from "../Inputs/CustomRadioInput";
+// Animated Components imports
+import AnimatedComponent from "../AnimatedComponents/AnimatedComponent";
+import AnimatedLayout from "../AnimatedComponents/AnimatedLayout";
 
-export default function PledgeModal({ closeModal, toggleSuccessModal, setBackers, setMoney }) {
+export default function PledgeModal({ closeModal, toggleThankYouModal, setBackers, setMoney }) {
   const [selectedPledge, setSelectedPledge] = useState(null);
   const [pledgeAmount, setPledgeAmount] = useState("");
   const [errorText, setErrorText] = useState(false);
@@ -16,7 +23,7 @@ export default function PledgeModal({ closeModal, toggleSuccessModal, setBackers
     setErrorText(false);
   };
 
-  // Handle the continue button for PledgeInput
+  // Function to handle continue button for PledgeInput
   const handleContinue = () => {
     // Find the selected pledge inside the json
     const pledge = pledgesData.find((pledge) => pledge.id === selectedPledge);
@@ -42,9 +49,12 @@ export default function PledgeModal({ closeModal, toggleSuccessModal, setBackers
     setBackers((value) => value + 1);
     // Increase the amount of money in progress component by the amount pledged
     setMoney((value) => value + Number(pledgeAmount));
+    // remove error text
     setErrorText(false);
+    // close the modal
     closeModal();
-    toggleSuccessModal();
+    // open thankyou modal
+    toggleThankYouModal();
   };
 
   // Prevent form default
@@ -53,23 +63,31 @@ export default function PledgeModal({ closeModal, toggleSuccessModal, setBackers
   };
 
   return (
-    <>
-      <section className="modal -top-[7.75rem] pb-1 pt-[1.92rem] text-left md:max-w-[45.5rem] md:pt-[2.85rem]">
-        <div className="relative flex justify-between">
-          <h2 className="text-lg md:text-2xl">Back this project</h2>
-          <button
-            onClick={() => closeModal()}
-            aria-label="Close Modal"
-            className="md:absolute md:-right-5 md:-top-4">
-            <img src={Close} alt="Close mark" className="filter-close transition-all" />
-          </button>
-        </div>
-        <p className="py-[1.35rem] md:py-[1.2rem]">
-          Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?
-        </p>
+    <LayoutGroup>
+      <AnimatedComponent
+        animate="animate"
+        variants={modalVariants}
+        layout
+        className="modal -top-[7.75rem] pb-1 pt-[1.92rem] text-left md:max-w-[45.5rem] md:pt-[2.85rem]">
+        <AnimatedLayout>
+          <div className="relative flex justify-between">
+            <h2 className="text-lg md:text-2xl">Back this project</h2>
+            <button
+              onClick={() => closeModal()}
+              aria-label="Close Modal"
+              className="md:absolute md:-right-5 md:-top-4">
+              <img src={Close} alt="Close mark" className="filter-close transition-all" />
+            </button>
+          </div>
+          <p className="py-[1.35rem] md:py-[1.2rem]">
+            Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?
+          </p>
+        </AnimatedLayout>
         <form action="#" onSubmit={handleSubmit} className="md:py-3">
-          <div className={`pledge mb-5 md:mb-6 ${0 === selectedPledge ? "selected" : "not-selected"}`}>
-            <div className="px-6 py-[2.1rem] md:px-[1.6rem]">
+          <AnimatedLayout
+            tag="div"
+            className={`pledge mb-5 md:mb-6 ${0 === selectedPledge ? "selected" : "not-selected"}`}>
+            <AnimatedLayout className="px-6 py-[2.1rem] md:px-[1.6rem]">
               <label htmlFor="pledge">
                 <div className="flex gap-4 md:gap-6">
                   <CustomRadioInput id="pledge" handleRadio={() => handleRadio(0)} />
@@ -80,23 +98,25 @@ export default function PledgeModal({ closeModal, toggleSuccessModal, setBackers
                   will be signed up to receive product updates via email.
                 </p>
               </label>
-            </div>
-            {selectedPledge === 0 && (
-              <PledgeInput
-                amount={pledgeAmount}
-                setPledgeAmount={setPledgeAmount}
-                errorText={errorText}
-                setErrorText={setErrorText}
-                handleContinue={handleContinue}
-              />
-            )}
-          </div>
+            </AnimatedLayout>
+            <AnimatePresence>
+              {selectedPledge === 0 && (
+                <PledgeInput
+                  amount={pledgeAmount}
+                  setPledgeAmount={setPledgeAmount}
+                  errorText={errorText}
+                  setErrorText={setErrorText}
+                  handleContinue={handleContinue}
+                />
+              )}
+            </AnimatePresence>
+          </AnimatedLayout>
           {pledgesData.map((pledge, index) => (
-            <div
+            <AnimatedLayout
               key={pledge.id}
               className={`pledge mb-[1.6rem] ${index === 2 ? "opacity-50" : ""} 
                ${pledge.id === selectedPledge ? "selected" : "not-selected"}`}>
-              <div className="px-6 pb-6 pt-5 md:px-[1.6rem] md:pb-6 md:pt-7">
+              <AnimatedLayout className="px-6 pb-6 pt-5 md:px-[1.6rem] md:pb-6 md:pt-7">
                 <label htmlFor={`pledge${pledge.id}`}>
                   <div className="md:grid md:grid-cols-4 md:items-center">
                     <div className="flex items-center gap-4 md:col-span-3 md:gap-6">
@@ -117,20 +137,22 @@ export default function PledgeModal({ closeModal, toggleSuccessModal, setBackers
                     </div>
                   </div>
                 </label>
-              </div>
-              {selectedPledge === pledge.id && (
-                <PledgeInput
-                  amount={pledgeAmount}
-                  setPledgeAmount={setPledgeAmount}
-                  errorText={errorText}
-                  setErrorText={setErrorText}
-                  handleContinue={handleContinue}
-                />
-              )}
-            </div>
+              </AnimatedLayout>
+              <AnimatePresence>
+                {selectedPledge === pledge.id && (
+                  <PledgeInput
+                    amount={pledgeAmount}
+                    setPledgeAmount={setPledgeAmount}
+                    errorText={errorText}
+                    setErrorText={setErrorText}
+                    handleContinue={handleContinue}
+                  />
+                )}
+              </AnimatePresence>
+            </AnimatedLayout>
           ))}
         </form>
-      </section>
-    </>
+      </AnimatedComponent>
+    </LayoutGroup>
   );
 }
