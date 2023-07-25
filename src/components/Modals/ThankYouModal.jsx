@@ -6,7 +6,7 @@ export default function ThankYouModal({ closeModal }) {
   return (
     <AnimatedComponent
       variants={modalVariants2}
-      className="modal left-0 right-0 top-[9.5rem] pb-5 pt-[1.92rem] text-center md:max-w-[33.5rem] md:pb-10 md:pt-11">
+      className="modal fixed left-0 right-0 top-20 pb-5 pt-[1.92rem] text-center md:max-w-[33.5rem] md:pb-10 md:pt-11">
       <AnimatedComponent tag="img" variants={checkVariants} src={Check} alt="" className="mx-auto w-24" />
       <AnimatedComponent variants={fadeinY(1.8)} initial="initial" animate="animate">
         <div>

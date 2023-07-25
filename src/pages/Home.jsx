@@ -23,7 +23,6 @@ export default function Home() {
       window.scrollTo({ top: 75, behavior: "smooth" });
     } else if (modal === "success") {
       setThankYouModal(!thankYouModal);
-      window.scrollTo({ top: 300, behavior: "smooth" });
     }
   };
 

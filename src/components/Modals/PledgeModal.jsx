@@ -68,7 +68,7 @@ export default function PledgeModal({ closeModal, toggleThankYouModal, setBacker
         animate="animate"
         variants={modalVariants}
         layout
-        className="modal -top-[7.75rem] pb-1 pt-[1.92rem] text-left md:max-w-[45.5rem] md:pt-[2.85rem]">
+        className="modal absolute -top-[7.75rem] pb-1 pt-[1.92rem] text-left md:max-w-[45.5rem] md:pt-[2.85rem]">
         <AnimatedLayout>
           <div className="relative flex justify-between">
             <h2 className="text-lg md:text-2xl">Back this project</h2>
