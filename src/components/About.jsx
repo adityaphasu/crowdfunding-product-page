@@ -2,7 +2,8 @@ import pledges from "../data/pledges.json";
 import TriggerModalButton from "../components/Buttons/TriggerModalButton";
 import AnimatedComponent from "./AnimatedComponents/AnimatedComponent";
 import { fadeIn, fadeinY } from "../utils/animatedVariants";
-export default function About({ toggleModal }) {
+
+export default function About() {
   return (
     <AnimatedComponent
       animateInView={true}
@@ -41,13 +42,11 @@ export default function About({ toggleModal }) {
                   {pledge.left === true ? (
                     <TriggerModalButton
                       text="Select Reward"
-                      toggleModal={toggleModal}
                       className="bg-moderate-cyan px-[1.8rem] py-3.5 hover:bg-dark-cyan lg:py-3"
                     />
                   ) : (
                     <TriggerModalButton
                       text="Out of Stock"
-                      toggleModal={toggleModal}
                       disabled={true}
                       className="mt-0.5 bg-dark-gray px-[2.1rem] py-3.5 lg:mt-0 lg:py-3"
                     />

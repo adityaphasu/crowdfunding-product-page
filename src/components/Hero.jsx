@@ -8,7 +8,7 @@ import AnimatedLayout from "./AnimatedComponents/AnimatedLayout";
 import AnimatedComponent from "./AnimatedComponents/AnimatedComponent";
 import { fadeIn } from "../utils/animatedVariants";
 
-export default function Hero({ toggleModal }) {
+export default function Hero() {
   const [bookmark, setBookmark] = useState(false);
 
   const toggleBookmark = () => {
@@ -28,7 +28,6 @@ export default function Hero({ toggleModal }) {
         <TriggerModalButton
           text="Back this project"
           className="bg-moderate-cyan px-[3.1rem] hover:bg-dark-cyan lg:px-11"
-          toggleModal={toggleModal}
         />
         <LayoutGroup>
           <AnimatedLayout

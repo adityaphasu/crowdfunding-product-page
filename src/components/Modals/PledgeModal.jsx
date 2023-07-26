@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 import { modalVariants } from "../../utils/animatedVariants";
 import Close from "../../assets/icons/icon-close-modal.svg";
@@ -10,8 +10,11 @@ import CustomRadioInput from "../Inputs/CustomRadioInput";
 // Animated Components imports
 import AnimatedComponent from "../AnimatedComponents/AnimatedComponent";
 import AnimatedLayout from "../AnimatedComponents/AnimatedLayout";
+import { AppContext } from "../../Contexts/AppContext";
 
-export default function PledgeModal({ closeModal, toggleThankYouModal, setBackers, setMoney }) {
+export default function PledgeModal() {
+  const { setPledgeModal, toggleModal, setBackers, setMoney } = useContext(AppContext);
+
   const [selectedPledge, setSelectedPledge] = useState(null);
   const [pledgeAmount, setPledgeAmount] = useState("");
   const [errorText, setErrorText] = useState(false);
@@ -51,10 +54,10 @@ export default function PledgeModal({ closeModal, toggleThankYouModal, setBacker
     setMoney((value) => value + Number(pledgeAmount));
     // remove error text
     setErrorText(false);
-    // close the modal
-    closeModal();
+    // close the pledge modal
+    setPledgeModal(false);
     // open thankyou modal
-    toggleThankYouModal();
+    toggleModal("success");
   };
 
   // Prevent form default
@@ -73,7 +76,7 @@ export default function PledgeModal({ closeModal, toggleThankYouModal, setBacker
           <div className="relative flex justify-between">
             <h2 className="text-lg md:text-2xl">Back this project</h2>
             <button
-              onClick={() => closeModal()}
+              onClick={() => setPledgeModal(false)}
               aria-label="Close Modal"
               className="md:absolute md:-right-5 md:-top-4">
               <img src={Close} alt="Close mark" className="filter-close transition-all" />

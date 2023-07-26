@@ -31,7 +31,7 @@ export default function PledgeInput({ amount, setPledgeAmount, errorText, setErr
           </label>
           <ContinueButton onClick={handleContinue} />
         </div>
-        {errorText && <p className="absolute bottom-0 left-2 text-xs text-red-600 md:left-2">{errorText}</p>}
+        {errorText && <p className="absolute bottom-0 left-7 text-xs text-red-600 md:left-2">{errorText}</p>}
       </div>
     </AnimatedComponent>
   );

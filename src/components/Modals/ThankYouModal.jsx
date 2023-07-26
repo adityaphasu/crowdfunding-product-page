@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import Check from "../../assets/icons/icon-check.svg";
 import { checkVariants, fadeinY, modalVariants2 } from "../../utils/animatedVariants";
 import AnimatedComponent from "../AnimatedComponents/AnimatedComponent";
+import { AppContext } from "../../Contexts/AppContext";
 
-export default function ThankYouModal({ closeModal }) {
+export default function ThankYouModal() {
+  const { setThankYouModal } = useContext(AppContext);
+
   return (
     <AnimatedComponent
       variants={modalVariants2}
@@ -16,7 +20,7 @@ export default function ThankYouModal({ closeModal }) {
             will get an email once our campaign is completed.
           </p>
         </div>
-        <button className="btn my-3 px-9 py-3 font-medium" onClick={closeModal}>
+        <button className="btn my-3 px-9 py-3 font-medium" onClick={() => setThankYouModal(false)}>
           Got it!
         </button>
       </AnimatedComponent>

@@ -1,7 +1,11 @@
 import AnimatedComponent from "./AnimatedComponents/AnimatedComponent";
 import { fadeIn, progressBarVariants } from "../utils/animatedVariants";
+import { useContext } from "react";
+import { AppContext } from "../Contexts/AppContext";
 
-export default function Progress({ backers, money }) {
+export default function Progress() {
+  const { backers, money } = useContext(AppContext);
+
   return (
     <AnimatedComponent
       variants={fadeIn}
