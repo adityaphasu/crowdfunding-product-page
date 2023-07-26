@@ -4,7 +4,7 @@ export default function AnimatedComponent({ tag = "section", variants, animateIn
   const MotionTag = motion[tag];
   const prefersReducedMotion = useReducedMotion();
 
-  const shouldAnimate = true ? "" : variants;
+  const shouldAnimate = prefersReducedMotion ? "" : variants;
   const inView = animateInView ? "whileInView" : "animate";
 
   return (
