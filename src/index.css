@@ -45,7 +45,7 @@
   /* Modal Styles */
 
   .modal {
-    @apply z-30 mx-auto max-w-[20.5rem] rounded-lg bg-white px-6 leading-6
+    @apply left-0 right-0 z-30 mx-auto max-w-[20.5rem] rounded-lg bg-white px-6 leading-6
      md:px-12 md:leading-[1.53rem];
   }
 
@@ -70,8 +70,8 @@
   }
 
   .filter-close:hover {
-    filter: brightness(0) saturate(100%) invert(23%) sepia(36%) saturate(5982%) hue-rotate(158deg)
-      brightness(89%) contrast(91%);
+    filter: brightness(0) saturate(100%) invert(23%) sepia(36%) saturate(5982%) hue-rotate(158deg) brightness(89%)
+      contrast(91%);
   }
   /* Inputs */
 
