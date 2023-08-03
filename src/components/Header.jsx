@@ -15,7 +15,7 @@ export default function Header() {
   const links = ["About", "Discover", "Get Started"];
 
   return (
-    <header className="h-[19rem] bg-hero-mobile bg-cover bg-no-repeat lg:h-[25rem] lg:bg-hero-desktop lg:bg-contain">
+    <header className="h-[19rem] bg-hero-mobile bg-cover bg-no-repeat lg:h-[25rem] lg:bg-hero-desktop">
       <AnimatedComponent
         tag="nav"
         animateInView={true}
